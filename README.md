@@ -2,4 +2,4 @@
 
 效果图如下所示：
 
-[RotateImageView](https://github.com/Blankj/GetRotateDegree/blob/master/img/demo.gif)
+![RotateImageView](https://github.com/Blankj/GetRotateDegree/blob/master/img/demo.gif)

@@ -35,9 +35,9 @@ public class RotateImageView extends ImageView {
     private boolean isInit      = false;
 
     // 旋转角度改变的监听器
-    private onRotationChangeListener mListener;
+    private OnRotationChangeListener mListener;
 
-    public void setOnRotationChangeListener(onRotationChangeListener listener) {
+    public void setOnRotationChangeListener(OnRotationChangeListener listener) {
         mListener = listener;
     }
 
@@ -77,6 +77,7 @@ public class RotateImageView extends ImageView {
     @Override
     protected void onDraw(Canvas canvas) {
         Log.d("blankj", "onDraw");
+        if (mBitmap == null) return;
         canvas.save();
         canvas.drawBitmap(mBitmap, matrix, null);
         canvas.restore();
@@ -134,14 +135,20 @@ public class RotateImageView extends ImageView {
                 break;
             case MotionEvent.ACTION_UP:
                 // 如果图片需要复原原来角度，调用下方代码
-//                matrix.setRotate(0, mBitmap.getWidth() >> 1, mBitmap.getHeight() >> 1);
+//                matrix.setRotate(totalDegree, ox, oy);
 //                invalidate();
                 break;
         }
         return true;
     }
 
-    public interface onRotationChangeListener {
+    public void reset() {
+        totalDegree = 0;
+        matrix.setRotate(totalDegree, ox, oy);
+        invalidate();
+    }
+
+    public interface OnRotationChangeListener {
         void getRotation(int degree);
     }
 }

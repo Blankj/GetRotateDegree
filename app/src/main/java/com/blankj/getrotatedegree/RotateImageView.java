@@ -56,6 +56,7 @@ public class RotateImageView extends ImageView {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        // 已初始化完毕的话那就直接滚回老家去吧
         if (isInit) return;
         int measureWidth = getWidth();
         int measureHeight = getHeight();
@@ -77,6 +78,7 @@ public class RotateImageView extends ImageView {
     @Override
     protected void onDraw(Canvas canvas) {
         Log.d("blankj", "onDraw");
+        // 判空以防崩溃
         if (mBitmap == null) return;
         canvas.save();
         canvas.drawBitmap(mBitmap, matrix, null);
